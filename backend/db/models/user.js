@@ -1,6 +1,6 @@
 'use strict';
-const { Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const { Validator } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -46,15 +46,18 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
+  User.associate = function(models) {
+    // associations can be defined here
+  };
 
-  User.prototype.toSafeObject = function() {
+  User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance
     return { id, username, email };
   };
 
   User.prototype.validatePassword = function (password) {
     return bcrypt.compareSync(password, this.hashedPassword.toString());
-   };
+  };
 
   User.getCurrentUserById = async function (id) {
     return await User.scope('currentUser').findByPk(id);
@@ -84,8 +87,6 @@ module.exports = (sequelize, DataTypes) => {
     });
     return await User.scope('currentUser').findByPk(user.id);
   };
-  User.associate = function(models) {
-    // associations can be defined here
-  };
+
   return User;
 };
