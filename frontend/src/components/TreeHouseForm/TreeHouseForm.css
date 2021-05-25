@@ -1,0 +1,26 @@
+form {
+    display: flex;
+    justify-content: space-around;;
+    flex-direction: column;
+  }
+
+  /* div {
+    width: 90%;
+  } */
+
+  /* textarea {
+    margin-bottom: 20px;
+  }
+
+  input {
+    margin-bottom: 20px;
+  } */
+
+  .inputBox {
+    padding: 5px;
+    margin: 5px;
+    background-color: orchid;
+    display: flex;
+    justify-content: space-around;;
+    align-items: center;
+  }

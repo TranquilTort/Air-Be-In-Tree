@@ -26,6 +26,7 @@
     "faker": "^5.5.3",
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
+    "mapbox-gl": "^2.2.0",
     "morgan": "^1.10.0",
     "per-env": "^1.0.2",
     "pg": "^8.6.0",

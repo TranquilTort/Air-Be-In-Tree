@@ -7,9 +7,9 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.post('/test', function(req, res) {
-    res.json({ requestBody: req.body });
-  });
+router.get('/treehouses', (req,res)=>{
+    console.log("MADE IT THIS FAR")
+});
 
 if (process.env.NODE_ENV === 'production') {
     const path = require('path');

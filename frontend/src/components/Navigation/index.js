@@ -4,15 +4,18 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-// import './Navigation.css';
-
+import './Navigation.css';
+import SearchBar from '../SearchBar';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+    <>
+      <NavLink exact to='new/treehouse'>List New TreeHouse</NavLink>
       <ProfileButton user={sessionUser} />
+    </>
     );
   } else {
     sessionLinks = (
@@ -24,12 +27,13 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
+    <nav >
+      <li className ='nav'>
         <NavLink exact to="/">Home</NavLink>
+        <SearchBar />
         {isLoaded && sessionLinks}
       </li>
-    </ul>
+    </nav>
   );
 }
 
