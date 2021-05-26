@@ -25,6 +25,9 @@ function App() {
           <Route path='/new/treehouse'>
             <TreeHouseForm />
           </Route>
+          <Route exact path='/'>
+            <Home></Home>
+          </Route>
         </Switch>
       )}
     </>

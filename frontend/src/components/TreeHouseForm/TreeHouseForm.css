@@ -2,25 +2,37 @@ form {
     display: flex;
     justify-content: space-around;;
     flex-direction: column;
-  }
+    width: 100%;
+}
 
-  /* div {
+/* div {
     width: 90%;
-  } */
+} */
 
-  /* textarea {
+/* textarea {
     margin-bottom: 20px;
-  }
+}
 
-  input {
+input {
     margin-bottom: 20px;
-  } */
+} */
 
-  .inputBox {
+.form-element {
+    padding:5px;
+    margin: 10px;
+    width:50%;
+}
+.selection {
+    width: 10%
+}
+.inputBox {
     padding: 5px;
-    margin: 5px;
+
+    /* background-image: url('http://permacultureapprentice.com/wp-content/uploads/2016/02/cover.jpg'); */
     background-color: orchid;
     display: flex;
+    height: 80%;
     justify-content: space-around;;
     align-items: center;
+    flex-direction: column;
   }

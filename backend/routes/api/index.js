@@ -2,14 +2,14 @@
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
-
+const treehouseRouter = require('./treehouse.js')
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+router.use('/treehouse', treehouseRouter)
 
-router.get('/treehouses', (req,res)=>{
-    console.log("MADE IT THIS FAR")
-});
+
+
 
 if (process.env.NODE_ENV === 'production') {
     const path = require('path');
