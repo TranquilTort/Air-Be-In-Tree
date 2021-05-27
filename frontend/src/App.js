@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import Home from './components/Home'
 import TreeHouseForm from './components/TreeHouseForm'
 import TreeHouseReview from './components/TreeHouseReview'
-import About from './components/About'
+
 import Splash from './components/Splash'
 function App() {
   const dispatch = useDispatch();
@@ -20,8 +20,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <About />
-      <Splash />
+
       {isLoaded && (
         <Switch>
           <Route path="/signup">
@@ -31,7 +30,10 @@ function App() {
             <TreeHouseForm />
           </Route>
           <Route exact path='/'>
-            <Home></Home>
+            <Splash />
+          </Route>
+          <Route path='/home'>
+            <Home />
           </Route>
           <Route path='/treehouse/:id'>
             <TreeHouseReview />

@@ -2,14 +2,49 @@
     background-image:url('https://images.dwell.com/photos-6063391372700811264/6133577319651737600-large/tree-house-30-feet-off-the-ground-in-idaho.jpg');
     height: 100vh;
     background-size: auto;
-    background-position: center;
+    background-position-x:center;
+    background-repeat: repeat;
     overflow:hidden;
+
 }
 
 .welcome-card {
     position: absolute;
-    top: 50vh;
+    top: 30vh;
     left: 20vw;
-    width: 60vw;
-    background-color: aquamarine;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.explore-button {
+    width:35vw;
+    height:5vw;
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    background: linear-gradient(rgba(56, 230, 177, 0.5), rgba(240, 136, 1, 0.788));
+
+    border-radius: 9px;
+}
+
+.explore-button:hover{
+    background: linear-gradient(rgba(240, 136, 1, 0.788),rgba(56, 230, 177, 0.5));
+}
+
+.button-text {
+   display: block;;
+    font-size: 4vw;
+    text-align: center;
+
+}
+
+.button-text:hover{
+    font-weight: bold;
 }
