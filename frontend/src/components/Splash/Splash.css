@@ -1,0 +1,15 @@
+.splash {
+    background-image:url('https://images.dwell.com/photos-6063391372700811264/6133577319651737600-large/tree-house-30-feet-off-the-ground-in-idaho.jpg');
+    height: 100vh;
+    background-size: auto;
+    background-position: center;
+    overflow:hidden;
+}
+
+.welcome-card {
+    position: absolute;
+    top: 50vh;
+    left: 20vw;
+    width: 60vw;
+    background-color: aquamarine;
+}

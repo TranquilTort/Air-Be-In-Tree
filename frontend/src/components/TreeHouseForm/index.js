@@ -7,23 +7,13 @@ import './TreeHouseForm.css';
 
 
 
-const TREES = [
-    "Oak",
-    "Pine",
-    "Red Wood",
-    "Fur",
-    "Maple",
-    "Chestnut",
-    "Aspen"
-  ];
-
-
 const TreeHouseForm = () => {
     const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
+    const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const dispatch = useDispatch();
     const treeTypesArr =  useSelector((state)=>Object.values(state.treehouse.types))
+    const sessionUser = useSelector(state => state.session.user);
     const [treeType, setTreeType] = useState(null);
     const [treeImg, setTreeImg] = useState('http://permacultureapprentice.com/wp-content/uploads/2016/02/cover.jpg');
     useEffect(() => {
@@ -35,19 +25,20 @@ const TreeHouseForm = () => {
         if(treeType!== null){
             setTreeImg(treeTypesArr.find(el=>el.id == treeType).image);
         }
+
     },[treeType])
-
-
     const handleSubmit = (e) => {
-    // console.log('handleSubmit clicked');
+    console.log('handleSubmit clicked');
     e.preventDefault();
 
     const newTreeHouse = {
-      id: nanoid(),
       title,
       imageUrl,
-      body
+      description,
+      treeType,
+      owner:sessionUser.id
     };
+    console.log('NEW TREE HOUSE BUILT FRONTEND', newTreeHouse);
     dispatch(addTreeHouse(newTreeHouse));
     reset();
   };
@@ -55,7 +46,7 @@ const TreeHouseForm = () => {
   const reset = () => {
     setTitle('');
     setImageUrl('');
-    setBody('');
+    setDescription('');
   };
 
   return (
@@ -81,7 +72,7 @@ const TreeHouseForm = () => {
           name='imageUrl'
         />
         <label>
-        Select a Tree
+        Select a Tree: &nbsp;
         <select
         className='selection'
         onChange={(e)=>{
@@ -89,6 +80,7 @@ const TreeHouseForm = () => {
         }}
         // value={treeType}
         >
+          <option hidden disabled selected value> Choose from our list</option>
           {treeTypesArr.map((treev,i) => (
             <option
                 key={i}
@@ -100,11 +92,10 @@ const TreeHouseForm = () => {
         </select>
       </label>
       <label></label>
-
         <textarea
-            className='form-element'
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
+          className='form-element'
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           name='body'
           placeholder='Enter your description'
         ></textarea>

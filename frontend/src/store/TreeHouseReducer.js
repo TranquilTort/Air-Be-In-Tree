@@ -1,14 +1,37 @@
 //build an articleReducer
+import { csrfFetch } from './csrf';
 
 
 const SET_TreeHouse = 'treehouse/setTreehouse';
 //add article constant
 const ADD_TreeHouse= 'treehouse/addTreehouse';
+
 const SET_TREETYPES = 'treehouse/getTreeTypes'
 //add article action creator
-export const addTreeHouse = (newTreeHouse) => {
-  return { type: ADD_TreeHouse, newTreeHouse: newTreeHouse };
+const addOneTreeHouse=(house)=>({
+  type:ADD_TreeHouse,
+  house
+})
+function getXSRF(){
+  let allCookies = document.cookie.split(';');
+  const xsrfval =  allCookies.find(el=> el.includes(`XSRF`)).split('=')[1];
+  console.log('THIS THE TOKEN', xsrfval);
+  return xsrfval;
+}
+export const addTreeHouse = data =>async dispatch => {
+  console.log('inside store',data)
+  const {title,description,imageUrl,treeType,owner} = data;
+  const res = await csrfFetch("/api/treehouse", {
+    method: "POST",
+    body: JSON.stringify({title,description,imageUrl,treeType,owner}),
+  });
+  if(res.ok){
+    const newHouse = await res.json();
+    dispatch(addOneTreeHouse(newHouse));
+    return newHouse;
+  }
 };
+
 
 const setTreeHouses = (houses) =>({
     type: SET_TreeHouse,
@@ -58,7 +81,7 @@ const TreeHouseReducer = (state = initialState, action) => {
       return {...state, houses: newHouses};
     //add TreeHouse case
     case ADD_TreeHouse:
-      return { ...state, TreeHouse: [...state.TreeHouse, action.newTreeHouse] };
+      return { ...state, houses: {...state.houses, [action.house.id]:action.house}};
     default:
       return state;
   }

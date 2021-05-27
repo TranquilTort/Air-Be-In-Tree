@@ -2,12 +2,10 @@ body
 {
   background-color:#f2f2f2;
   font-family: 'RobotoDraft', 'Roboto', sans-serif;
-  -webkit-font-smoothing: antialiased;
 }
 
-*
-{
-  -webkit-box-sizing: border-box;
+* {
+
   box-sizing: border-box;
 }
 
@@ -37,21 +35,13 @@ p
 {
   height:18em;
   width:14em;
-  display:-webkit-box;
-  display:-ms-flexbox;
-  -webkit-box-direction:normal;
   display:flex;
-  -ms-flex-direction:column;
   flex-direction:column;
-  -webkit-box-orient:vertical;
-  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   position:relative;
   border-radius:16px;
   overflow:hidden;
-  /* -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff; */
-  /* box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff; */
+  box-shadow:  15px 15px 27px #164201;
 }
 /* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
 
@@ -64,9 +54,7 @@ p
   padding:1em 2em;
   position:Absolute;
   top:0px;
-  /* -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1); */
-  /* -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1); */
-  /* transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1); */
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   background-size:cover;
   background-repeat:no-repeat;
 }
@@ -80,27 +68,13 @@ p
   width:14em;
   position:absolute;
   bottom:0em;
-  /* -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1); */
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   padding: 0.5em 1em;
   text-align:center;
 }
 
 /* Social Icons */
 
-.property-social-icons
-{
-  width:1em;
-  height:1em;
-  background-color:black;
-  position:absolute;
-  bottom:1em;
-  left:1em;
-  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
 
 /* Property Cards Hover States */
 
@@ -109,18 +83,7 @@ p
   height:0em;
   padding:0px 1em;
 }
-.property-card:hover .property-image
+ .property-card:hover .property-image
 {
   height:18em;
-}
-
-.property-card:hover .property-social-icons
-{
-  background-color:white;
-}
-
-.property-card:hover .property-social-icons:hover
-{
-  background-color:blue;
-  cursor:pointer;
 }

@@ -13,7 +13,7 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
     <>
-      <NavLink exact to='new/treehouse'>List New TreeHouse</NavLink>
+      {sessionUser && <NavLink exact to='new/treehouse'>List New TreeHouse</NavLink>}
       <ProfileButton user={sessionUser} />
     </>
     );
