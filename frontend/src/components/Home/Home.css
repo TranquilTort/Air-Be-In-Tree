@@ -1,3 +1,23 @@
-.treeouse-grid {
+#treehouse-cards {
     display:grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 40% 40%;
+    padding: 10px;
+    background-color:aquamarine
+}
+
+@media (max-width: 1000px ) and (min-width:750px){
+    #treehouse-cards {
+        grid-template-columns: 33% 33% 33%;
+    }
+}
+@media (max-width:749px){
+    #treehouse-cards {
+        grid-template-columns: 50% 50%;
+    }
+}
+@media (min-width:1300px){
+    #treehouse-cards {
+        grid-template-columns: 20% 20% 20% 20% 20%;
+    }
 }

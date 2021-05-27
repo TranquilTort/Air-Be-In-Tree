@@ -12,7 +12,7 @@ function Home() {
     }, [dispatch]);
     console.log('THE HOUSES',treehouses);
     return (
-        <div >
+        <div id='treehouse-cards'>
 
 
             {treehouses && treehouses.map((house,index)=>(
