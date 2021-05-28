@@ -1,5 +1,6 @@
 .treehouse-container {
-    height: 150vh;
+    height: fit-content;
+    
     background-color: aquamarine;
     padding: 10px;
 

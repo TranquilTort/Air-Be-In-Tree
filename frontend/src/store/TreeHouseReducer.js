@@ -1,13 +1,13 @@
-//build an articleReducer
+
 import { csrfFetch } from './csrf';
 
 
 const SET_TreeHouse = 'treehouse/setTreehouse';
-//add article constant
+const ADD_REVIEW ='treehouse/addReview'
 const ADD_TreeHouse= 'treehouse/addTreehouse';
-
+const SET_REVIEW = 'treehouse/review';
 const SET_TREETYPES = 'treehouse/getTreeTypes'
-//add article action creator
+
 const addOneTreeHouse=(house)=>({
   type:ADD_TreeHouse,
   house
@@ -32,6 +32,34 @@ export const addTreeHouse = data =>async dispatch => {
   }
 };
 
+const setReviews = (reviews)=>({
+  type:SET_REVIEW,
+  reviews
+})
+
+const addOneReview = (review) =>({
+  type:ADD_REVIEW,
+  review
+})
+
+export const sendNewReview=(review)=>async(dispatch)=>{
+  const {title,reviewer,body,stars,tree_id} = review;
+  const res = await csrfFetch("/api/treehouse/new/review", {
+    method: "POST",
+    body: JSON.stringify({title,reviewer,body,stars,tree_id}),
+  });
+  if(res.ok){
+    const newReview = await res.json();
+    dispatch(addOneReview(newReview));
+    return newReview;
+  }
+}
+
+export const getReviews = () => async(dispatch) =>{
+  const res = await fetch('/api/treehouse/reviews');
+  const reviews = await res.json();
+  dispatch(setReviews(reviews));
+}
 
 const setTreeHouses = (houses) =>({
     type: SET_TreeHouse,
@@ -58,15 +86,21 @@ export const getTreeHouses = () =>async(dispatch)=> {
 
 };
 
-//action
-// {
-//   type: 'TreeHouse/getTreeHouse',payload:TreeHouse
-// }
 
-const initialState = { houses: [], types:[], isLoading: true };
+const initialState = { houses: {}, reviews:{}, types:[], isLoading: true };
 
 const TreeHouseReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_REVIEW:
+      return{
+        ...state, reviews:{ ...state.reviews, [action.review.id]:action.review}
+      }
+    case SET_REVIEW:
+      let newReviews= {}
+      action.reviews.forEach(el=>{
+        newReviews[el.id] = el;
+      })
+      return {...state, reviews: newReviews }
     case SET_TREETYPES:
         return {
             ...state, types:action.treeTypes

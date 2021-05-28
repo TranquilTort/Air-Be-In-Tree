@@ -35,8 +35,12 @@ router.post('/new/review', asyncHandler(async(req,res)=>{
     return res.json(review);
 }));
 
+router.get('/reviews',asyncHandler(async(req,res)=>{
+    const reviews = await db.Review.findAll();
+    res.json(reviews);
+}));
+
 router.get('/types', asyncHandler(async(req,res)=>{
-    res.cookie('XSRF-TOKEN', req.csrfToken());
     const treeTypes = await db.TreeType.findAll();
     res.json(treeTypes);
 }));
