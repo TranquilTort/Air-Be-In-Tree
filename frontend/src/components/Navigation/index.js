@@ -1,27 +1,34 @@
 // frontend/src/components/Navigation/index.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import * as sessionActions from '../../store/session';
 import './Navigation.css';
 import SearchBar from '../SearchBar';
 function Navigation({ isLoaded }){
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+
+  const demoLogin = () =>{
+    dispatch(sessionActions.loginDemoUser());
+  }
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
     <>
-      {sessionUser && <NavLink exact to='new/treehouse'>List New TreeHouse</NavLink>}
-      <ProfileButton user={sessionUser} />
+      {sessionUser && <NavLink className='nav-ele'  to='/new/treehouse'><i style={{color:'rgb(35, 199, 117)'}} class="fas fa-tree">   Create Listing</i></NavLink>}
+      <ProfileButton className='nav-ele' user={sessionUser} />
     </>
     );
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <button onClick={demoLogin} className='nav-ele'>Login As Demo-User</button>
+        <LoginFormModal className='nav-ele' />
+        <NavLink className='nav-ele' to="/signup">Sign Up</NavLink>
       </>
     );
   }
@@ -29,8 +36,9 @@ function Navigation({ isLoaded }){
   return (
     <nav >
       <li className ='nav'>
-        <NavLink exact to="/">Home</NavLink>
-        <SearchBar />
+        <NavLink exact to="/"   className='nav-ele'><i style={{color:'rgb(35, 199, 117)'}} class="fas fa-home"></i></NavLink>
+        {/* <SearchBar /> */}
+        <NavLink exact to="/about" className='nav-ele'>About</NavLink>
         {isLoaded && sessionLinks}
       </li>
     </nav>

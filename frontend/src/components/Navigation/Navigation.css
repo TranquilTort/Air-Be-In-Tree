@@ -1,8 +1,25 @@
 .nav{
+    height: 4vh;
+    background-image: url('https://i.pinimg.com/originals/82/6a/53/826a531ab12e32b4a908d516a5ae4ffd.jpg');
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    font-size: 3vh;
+    color: rgb(35, 199, 117);
+}
+.nav-ele{
+    text-decoration: none;
+    font-size: 2.5vh;
+    border-radius: 5px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    background-color: rgba(255, 209, 2, 0.2);
+    text-align: center;
+    border:none;
+    color: rgb(35, 199, 117);
 
- background-color: aqua;
- display: flex;
- justify-content: space-between;
- padding: 5px;
-
+}
+.nav-ele:hover {
+    background-color: rgba(255, 209, 2, 0.25);
 }

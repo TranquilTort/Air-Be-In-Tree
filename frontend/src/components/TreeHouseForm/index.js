@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+import { useHistory } from 'react-router-dom';
+
 
 import { addTreeHouse,getTreeTypes } from '../../store/TreeHouseReducer';
 import './TreeHouseForm.css';
@@ -8,6 +9,7 @@ import './TreeHouseForm.css';
 
 
 const TreeHouseForm = () => {
+    const history = useHistory();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [imageUrl, setImageUrl] = useState('');
@@ -27,7 +29,7 @@ const TreeHouseForm = () => {
         }
 
     },[treeType])
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
     console.log('handleSubmit clicked');
     e.preventDefault();
 
@@ -39,8 +41,12 @@ const TreeHouseForm = () => {
       owner:sessionUser.id
     };
     console.log('NEW TREE HOUSE BUILT FRONTEND', newTreeHouse);
-    dispatch(addTreeHouse(newTreeHouse));
-    reset();
+    let res = await dispatch(addTreeHouse(newTreeHouse));
+    if(res){
+      reset();
+      history.push(`/treehouse/${res.id}`)
+    }
+
   };
 
   const reset = () => {
@@ -51,9 +57,9 @@ const TreeHouseForm = () => {
 
   return (
     <div className='inputBox' style={{ backgroundImage: `url(${treeImg})` }}>
-      <h1>List TreeHouse</h1>
+      <h1 className='form-title'>List TreeHouse</h1>
       {/* {treeTypes.map((type)=> <div> {type} </div> )} */}
-      <form onSubmit={handleSubmit}>
+      <form className='form' onSubmit={handleSubmit}>
         <input
             className='form-element'
             type='text'
@@ -71,6 +77,7 @@ const TreeHouseForm = () => {
           placeholder='Image URL'
           name='imageUrl'
         />
+        <img id="current-photo" src={imageUrl} onerror="this.src='https://www.unesale.com/ProductImages/Large/notfound.png'" alt=""></img>
         <label>
         Select a Tree: &nbsp;
         <select
@@ -91,15 +98,16 @@ const TreeHouseForm = () => {
           ))}
         </select>
       </label>
-      <label></label>
+      <label>Enter The Description <br /> Of Your Listing</label>
         <textarea
+          id='description'
           className='form-element'
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           name='body'
           placeholder='Enter your description'
         ></textarea>
-        <button className='form-element' type='submit'>Submit</button>
+        <button className='explore-button' type='submit'>Submit</button>
       </form>
     </div>
   );

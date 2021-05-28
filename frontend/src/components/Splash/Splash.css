@@ -28,9 +28,7 @@
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
-
     background: linear-gradient(rgba(56, 230, 177, 0.5), rgba(240, 136, 1, 0.788));
-
     border-radius: 9px;
 }
 
@@ -39,7 +37,7 @@
 }
 
 .button-text {
-   display: block;;
+    display: block;;
     font-size: 4vw;
     text-align: center;
 
