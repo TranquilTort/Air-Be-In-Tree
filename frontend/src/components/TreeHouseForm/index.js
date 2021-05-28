@@ -57,9 +57,12 @@ const TreeHouseForm = () => {
 
   return (
     <div className='inputBox' style={{ backgroundImage: `url(${treeImg})` }}>
-      <h1 className='form-title'>List TreeHouse</h1>
+      <h1 className='form-title'>List Your TreeHouse!</h1>
       {/* {treeTypes.map((type)=> <div> {type} </div> )} */}
       <form className='form' onSubmit={handleSubmit}>
+        <div className='input-group'>
+
+        <label className='form-label'>Name of the Property:</label>
         <input
             className='form-element'
             type='text'
@@ -68,37 +71,48 @@ const TreeHouseForm = () => {
             placeholder='Title'
             name='title'
         />
+        </div>
+        <div className='input-group'>
+        <label className='form-label'>Picture of TreeHouse:</label>
 
-        <input
-        className='form-element'
-          type='text'
-          onChange={(e) => setImageUrl(e.target.value)}
-          value={imageUrl}
-          placeholder='Image URL'
-          name='imageUrl'
-        />
-        <img id="current-photo" src={imageUrl} onerror="this.src='https://www.unesale.com/ProductImages/Large/notfound.png'" alt=""></img>
-        <label>
-        Select a Tree: &nbsp;
-        <select
-        className='selection'
-        onChange={(e)=>{
-            setTreeType(e.target.value)
-        }}
-        // value={treeType}
-        >
-          <option hidden disabled selected value> Choose from our list</option>
-          {treeTypesArr.map((treev,i) => (
-            <option
-                key={i}
-                value={treev.id}
-                >
-              {treev.name}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>Enter The Description <br /> Of Your Listing</label>
+          <input
+          className='form-element'
+            type='text'
+            onChange={(e) => setImageUrl(e.target.value)}
+            value={imageUrl}
+            placeholder='Image URL'
+            name='imageUrl'
+          />
+          <img id="current-photo" src={imageUrl} onerror="this.src='https://www.unesale.com/ProductImages/Large/notfound.png'" alt=""></img>
+        </div>
+
+        <div className='input-group'>
+
+          <label className='form-label'>
+          Select a Tree: &nbsp;
+          <select
+          className='form-element'
+          onChange={(e)=>{
+              setTreeType(e.target.value)
+          }}
+          value={treeType}
+          >
+            <option hidden disabled selected value> Choose from our list</option>
+            {treeTypesArr.map((treev,i) => (
+              <option
+
+                  key={i}
+                  value={treev.id}
+                  >
+                {treev.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        </div>
+      <div id='description-group'>
+
+      <label className='form-label'>Enter The Description  Of Your Listing</label>
         <textarea
           id='description'
           className='form-element'
@@ -107,7 +121,8 @@ const TreeHouseForm = () => {
           name='body'
           placeholder='Enter your description'
         ></textarea>
-        <button className='explore-button' type='submit'>Submit</button>
+      </div>
+        <button id='submit-form' type='submit'>Post Your TreeHouse!</button>
       </form>
     </div>
   );

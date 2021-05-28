@@ -8,8 +8,9 @@
     color: rgb(35, 199, 117);
 }
 .nav-ele{
+    height: 3vh;
     text-decoration: none;
-    font-size: 2.5vh;
+    font-size: 2.2vh;
     border-radius: 5px;
     padding-right: 3px;
     padding-bottom: 3px;
@@ -21,5 +22,5 @@
 
 }
 .nav-ele:hover {
-    background-color: rgba(255, 209, 2, 0.25);
+    background-color: rgba(255, 209, 2, 0.3);
 }

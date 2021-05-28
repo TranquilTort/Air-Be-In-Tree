@@ -19,7 +19,7 @@ function Navigation({ isLoaded }){
   if (sessionUser) {
     sessionLinks = (
     <>
-      {sessionUser && <NavLink className='nav-ele'  to='/new/treehouse'><i style={{color:'rgb(35, 199, 117)'}} class="fas fa-tree">   Create Listing</i></NavLink>}
+      {sessionUser && <div className='nav-ele'><NavLink   to='/new/treehouse'><i style={{color:'rgb(35, 199, 117)'}} class="fas fa-tree"> </i></NavLink>Create Listing</div>}
       <ProfileButton className='nav-ele' user={sessionUser} />
     </>
     );
