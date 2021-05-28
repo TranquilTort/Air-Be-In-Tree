@@ -16,7 +16,7 @@ router.get('/', asyncHandler(async(req,res)=>{
 router.post('/test', function(req, res) {
     res.cookie('XSRF-TOKEN', req.csrfToken());
     res.json({ requestBody: req.body });
-  });
+});
 
 router.post('/', asyncHandler(async(req,res)=>{
     console.log('INSIDE OF POST',req.body)
@@ -26,7 +26,14 @@ router.post('/', asyncHandler(async(req,res)=>{
     const treehouse = await db.Treehouse.create({owner,title,description,imageUrl,tree_type});
     console.log('NEW TREE HOUSE BUILT', treehouse);
     return res.json(treehouse);
-}))
+}));
+
+router.post('/new/review', asyncHandler(async(req,res)=>{
+    const {title,reviewer,body,stars,tree_id} = req.body;
+    console.log('INSIDE OF review CREATOR ',{title,reviewer,body,stars,tree_id});
+    const review = await db.Review.create({title,reviewer,body,stars,tree_id});
+    return res.json(review);
+}));
 
 router.get('/types', asyncHandler(async(req,res)=>{
     res.cookie('XSRF-TOKEN', req.csrfToken());

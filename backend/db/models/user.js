@@ -48,6 +48,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   User.associate = function(models) {
     User.hasMany(models.Treehouse,{foreignKey:'owner'})
+    User.hasMany(models.Review,{foreignKey:'reviewer'})
   };
 
   User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function

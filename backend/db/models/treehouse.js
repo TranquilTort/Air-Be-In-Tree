@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Treehouse.associate = function(models) {
     Treehouse.belongsTo(models.User,{foreignKey:'owner'});
-    Treehouse.belongsTo(models.TreeType, {foreignKey:'tree_type'})
+    Treehouse.belongsTo(models.TreeType, {foreignKey:'tree_type'});
+    Treehouse.hasMany(models.Review, {foreignKey:'tree_id'})
+    
   };
   return Treehouse;
 };
