@@ -2,7 +2,9 @@
     display:grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 40% 40%;
+    grid-gap: 10px;
     padding: 10px;
+    height: 120vh;
     background-color:aquamarine
 }
 
@@ -16,8 +18,9 @@
         grid-template-columns: 50% 50%;
     }
 }
-@media (min-width:1300px){
+/* @media (min-width:1300px){
     #treehouse-cards {
+        padding: 10px;
         grid-template-columns: 20% 20% 20% 20% 20%;
     }
-}
+} */
