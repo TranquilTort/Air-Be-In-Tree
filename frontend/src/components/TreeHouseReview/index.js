@@ -42,7 +42,7 @@ function TreeHouseReview(){
     return (
         <>
             <div className='treehouse-container'>
-                <div className='treehouse-info'  style={{ backgroundImage: `url(${treeTypeImg})` }}>
+                <div className='treehouse-info'  style={{ backgroundSize: "cover",backgroundImage: `url(${treeTypeImg})` }}>
                     <div className='title-of-treehouse info-ele'>{treeHouse &&treeHouse.title}</div>
                     <div className='treehouse-image-display-div'>{
                         treeHouse &&

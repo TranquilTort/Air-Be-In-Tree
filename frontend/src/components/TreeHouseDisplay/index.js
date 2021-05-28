@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import { getTreeHouses,getTreeTypes } from '../../store/TreeHouseReducer';
 import './TreeHouseDisplay.css'
 function TreeHouseDisplay({house}) {
+    const [houseImg, setHouseImg] = useState(house.image)
     const treehouselink = `/treehouse/${house.id}`
     const dispatch = useDispatch();
     const treeTypesArr =  useSelector((state)=>Object.values(state.treehouse.types))
@@ -24,7 +25,7 @@ function TreeHouseDisplay({house}) {
           <div class="property-card">
             <a href={treehouselink}>
               <div class="property-image"
-               style={{ backgroundImage: `url(${house.image})` }}
+               style={{ backgroundImage: `url("${houseImg}")` }}
                >
                 <div class="property-image-title">
                   {/* <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. --> */}
@@ -32,12 +33,12 @@ function TreeHouseDisplay({house}) {
                 </div>
               </div></a>
             <div class="property-description"
-              style={ { backgroundImage: `url(${treeTypeBackground})` }}
+              style={{backgroundSize: "cover", backgroundImage: `url(${treeTypeBackground})` }}
              >
               <p className='property-description-p'>{house.description}.</p>
             </div>
           </div>
-</div>
+      </div>
     )
 }
 export default TreeHouseDisplay;
