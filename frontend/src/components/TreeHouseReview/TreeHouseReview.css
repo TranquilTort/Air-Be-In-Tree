@@ -1,0 +1,45 @@
+.treehouse-container {
+    height: 150vh;
+    background-color: aquamarine;
+    padding: 10px;
+
+}
+
+.treehouse-info {
+    border: 3px solid rgb(0, 46, 10);
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+.title-of-treehouse {
+    font-size:x-large;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 8px;
+}
+.treehouse-image-display-div {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    max-width: 90vw;
+}
+.treehouse-image-display {
+    margin: 5px;
+    max-width: 70vw;
+}
+
+.description-of-treehouse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.info-ele {
+    padding: 5px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, .7);
+}
