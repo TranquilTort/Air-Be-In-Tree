@@ -3,7 +3,7 @@ function ReviewDisplay({review}){
     return(
         <div className='review-display-div'>
             <div>
-            {review.title}
+            Title: {review.title}
             </div>
         <div>
             {review.body}

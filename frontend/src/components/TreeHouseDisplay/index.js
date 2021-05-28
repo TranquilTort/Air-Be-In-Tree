@@ -34,8 +34,7 @@ function TreeHouseDisplay({house}) {
             <div class="property-description"
               style={ { backgroundImage: `url(${treeTypeBackground})` }}
              >
-
-              <p>{house.description}.</p>
+              <p className='property-description-p'>{house.description}.</p>
             </div>
           </div>
 </div>
