@@ -7,7 +7,8 @@ import ReviewDisplay from '../ReviewDisplay'
 import './TreeHouseReview.css'
 function TreeHouseReview(){
     const [showReviewForm, setShowReviewForm] = useState(false);
-
+    const {id} = useParams();
+    const [houseid,sethouseid]= useState(id)
     const toggleForm= () => {
         if (showReviewForm){
             setShowReviewForm(false);
@@ -16,9 +17,9 @@ function TreeHouseReview(){
         }
     };
 
-    const {id} = useParams();
+
     console.log('THE ID',id)
-    const treeHouse =  useSelector((state)=>Object.values(state.treehouse.houses)).find(el=>el.id ==id);
+    const treeHouse =  useSelector((state)=>Object.values(state.treehouse.houses)).find(el=>el.id ==houseid);
     const treeTypesArr =  useSelector((state)=>Object.values(state.treehouse.types));
     const allReviews = useSelector((state)=>Object.values(state.treehouse.reviews));
     console.log('THIS SHOULD BE EVERY REVIEW', allReviews)
@@ -29,8 +30,16 @@ function TreeHouseReview(){
     }
     let thisTreeReviews =[];
     if(allReviews){
-        thisTreeReviews=Array.from(allReviews).filter(el=>el.tree_id==id);
+        thisTreeReviews=Array.from(allReviews).filter(el=>el.tree_id==houseid);
         console.log('THE REVIEWS FOR THIS TREE',thisTreeReviews)
+    }
+    let avgStars =0;
+    if(thisTreeReviews.length){
+        thisTreeReviews.forEach(element => {
+            avgStars += element.stars;
+        });;
+        avgStars = Math.floor(avgStars/thisTreeReviews.length);
+        console.log('AVERAGE RATING:', avgStars)
     }
     const dispatch = useDispatch();
     useEffect(() => {
@@ -57,7 +66,18 @@ function TreeHouseReview(){
                 </div>
             </div>
             <div className='review-container'>
-                    <button onClick={toggleForm}>Post a Review</button>
+                    <div>
+                        <span> Average Rating of This Treehouse:
+                            {avgStars>0 ?<span className="fa fa-star checked" ></span> : <span className="fa fa-star unchecked" ></span>}
+                            {avgStars>1 ?<span className="fa fa-star checked" ></span> : <span className="fa fa-star unchecked" ></span>}
+                            {avgStars>2 ?<span className="fa fa-star checked" ></span> : <span className="fa fa-star unchecked" ></span>}
+                            {avgStars>3 ?<span className="fa fa-star checked" ></span> : <span className="fa fa-star unchecked" ></span>}
+                            {avgStars>4 ?<span className="fa fa-star checked" ></span> : <span className="fa fa-star unchecked" ></span>}
+
+
+                        </span>
+                    </div>
+                        <button onClick={toggleForm}>Post a Review</button>
                     {showReviewForm && <ReviewForm treeHouse={treeHouse} />}
                     {thisTreeReviews.length>0 && thisTreeReviews.map((review,index)=>(
                         <ReviewDisplay key={index} review={review} />
