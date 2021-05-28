@@ -20,10 +20,10 @@ router.post('/test', function(req, res) {
 
 router.post('/', asyncHandler(async(req,res)=>{
     console.log('INSIDE OF POST',req.body)
-    const {title,description,imageUrl,treeType:tree_type,owner} = req.body;
-    console.log({title,description,imageUrl,tree_type,owner});
+    const {title,description,imageUrl:image,treeType:tree_type,owner} = req.body;
+    console.log({title,description,image,tree_type,owner});
     console.log('THIS PERSON MADE THE POST', owner)
-    const treehouse = await db.Treehouse.create({owner,title,description,imageUrl,tree_type});
+    const treehouse = await db.Treehouse.create({owner,title,description,image,tree_type});
     console.log('NEW TREE HOUSE BUILT', treehouse);
     return res.json(treehouse);
 }));

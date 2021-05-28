@@ -74,8 +74,8 @@ form {
 
 }
 #current-photo {
-    max-width: 40vh;
-    max-height: 60vh;
+    max-width: 40vw;
+    max-height: 50vh;
     margin:auto;
     align-self: center;
 }
